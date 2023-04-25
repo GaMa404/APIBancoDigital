@@ -28,4 +28,42 @@ class CorrentistaController extends Controller
             parent::getExceptionAsJSON($e);
         }
     }
+
+    /*public static function listar() : void
+    {
+        try
+        {
+            $model = new CorrentistaModel();
+            
+            $model->getAllRows();
+
+            parent::getResponseAsJSON($model->rows);
+              
+        } catch (Exception $e) {
+
+            parent::getExceptionAsJSON($e);
+        }
+    }*/
+
+    public static function auth()
+    {
+        $model = new CorrentistaModel();
+
+        $model->cpf = $_POST['cpf'];
+        $model->senha = $_POST['senha'];
+
+        $usuario_logado = $model->autenticar();
+
+        if($usuario_logado !== null)
+        {
+            $_SESSION['usuario_logado'] = $usuario_logado;
+        }
+    }
+
+    /*public static function logout()
+    {
+        unset($_SESSION['usuario_logado']);
+
+        parent::isAuthenticated();
+    }*/
 }

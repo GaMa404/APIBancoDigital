@@ -6,6 +6,14 @@ use Exception;
 
 abstract class Controller
 {
+    // MÉTODO PARA VERIFICAR LOGIN
+    /*public static function isAuthenticated(bool $deslogar)
+    {
+        if(!isset($_SESSION['usuario_logado']))
+        {
+        }
+    }*/
+
     public static function getResponseAsJSON($data)
     {
         header("Access-Control-Allow-Origin: *");

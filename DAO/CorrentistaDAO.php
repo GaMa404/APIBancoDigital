@@ -11,16 +11,6 @@ class CorrentistaDAO extends DAO
         parent::__construct();
     }
 
-    public function select()
-    {
-        $sql = "SELECT * FROM correntista";
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(DAO::FETCH_CLASS);
-    }
-
     public function insert(CorrentistaModel $m) : bool
     {
         $sql = "INSERT INTO correntista (nome, data_nasc, cpf, senha) VALUES (?, ?, ?, ?)";
@@ -34,7 +24,17 @@ class CorrentistaDAO extends DAO
         return $stmt->execute();
     }
 
-    public function update(CorrentistaModel $m)
+    public function select() : array
+    {
+        $sql = "SELECT * FROM correntista";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\CorrentistaModel");
+    }
+
+    public function update(CorrentistaModel $m) : bool
     {
         $sql = "UPDATE correntista SET nome=?, data_nasc=?, cpf=?, senha=? WHERE id=?";
 
@@ -49,10 +49,22 @@ class CorrentistaDAO extends DAO
 
     public function delete(int $id) : bool
     {
-        $sql = "DELETE FROm correntista WHERE id=?";
+        $sql = "DELETE FROM correntista WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $id);
         return $stmt->execute();
+    }
+
+    public function selectByCpfSenha($cpf, $senha)
+    {
+        $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $cpf);
+        $stmt->bindValue(2, $senha);
+        $stmt->execute();
+
+        return $stmt->fetchObject("API\Model\CorrentistaModel");
     }
 }

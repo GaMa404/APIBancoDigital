@@ -10,11 +10,11 @@ switch($uri)
         CorrentistaController::salvar();
     break;
 
-    /*case '/correntista/entrar':
-        //CorrentistaController::();
+    case '/correntista/entrar':
+        CorrentistaController::auth();
     break;
 
-    case '/conta/pix/enviar':
+    /*case '/conta/pix/enviar':
         //ContaController::();
     break;
 
