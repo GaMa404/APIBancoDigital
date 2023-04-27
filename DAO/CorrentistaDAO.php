@@ -47,6 +47,18 @@ class CorrentistaDAO extends DAO
         return $stmt->execute();
     }
 
+    public function search(string $query) : array
+    {
+        $str_query = ['filtro' => '%' . $query . '%'];
+
+        $sql = "SELECT * FROM correntista WHERE nome LIKE :filtro ";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute($str_query);
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\CorrentistaModel");
+    }
+
     public function delete(int $id) : bool
     {
         $sql = "DELETE FROM correntista WHERE id=?";

@@ -29,7 +29,7 @@ class CorrentistaController extends Controller
         }
     }
 
-    /*public static function listar() : void
+    public static function listar() : void
     {
         try
         {
@@ -43,7 +43,7 @@ class CorrentistaController extends Controller
 
             parent::getExceptionAsJSON($e);
         }
-    }*/
+    }
 
     public static function auth()
     {

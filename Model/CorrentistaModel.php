@@ -20,12 +20,12 @@ class CorrentistaModel extends Model
         }
     }
 
-    /*public function getAllRows(string $query = null)
+    public function getAllRows(string $query = null)
     {
         $dao = new CorrentistaDAO();
 
         $this->rows = ($query == null) ? $dao->select() : $dao->search($query);
-    }*/
+    }
 
 
     public function autenticar()
