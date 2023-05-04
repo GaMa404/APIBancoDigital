@@ -54,7 +54,19 @@ class ContaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $id);
         return $stmt->execute();
-    } 
+    }
+    
+    public function search(string $query) : array
+    {
+        $str_query = ['filtro' => '%' . $query . '%'];
+
+        $sql = "SELECT * FROM conta WHERE numero LIKE :filtro ";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->execute($str_query);
+
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\ContaModel");
+    }
     
     public function selectByNumero($numero)
     {

@@ -7,7 +7,7 @@ use Exception;
 
 class CorrentistaController extends Controller 
 {
-    public static function salvar() : void
+    public static function save() : void
     {
         try
         {
@@ -29,7 +29,7 @@ class CorrentistaController extends Controller
         }
     }
 
-    public static function listar() : void
+    public static function getAllRows() : void
     {
         try
         {
@@ -59,11 +59,4 @@ class CorrentistaController extends Controller
             $_SESSION['usuario_logado'] = $usuario_logado;
         }
     }
-
-    /*public static function logout()
-    {
-        unset($_SESSION['usuario_logado']);
-
-        parent::isAuthenticated();
-    }*/
 }

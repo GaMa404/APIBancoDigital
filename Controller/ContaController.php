@@ -7,7 +7,7 @@ use Exception;
 
 class ContaController extends Controller
 {
-    public static function salvar() : void
+    public static function save() : void
     {
         try
         {
@@ -28,6 +28,22 @@ class ContaController extends Controller
         }   
     }
 
+    public static function getAllRows() : void
+    {
+        try
+        {
+            $model = new ContaModel();
+            
+            $model->getAllRows();
+
+            parent::getResponseAsJSON($model->rows);
+              
+        } catch (Exception $e) {
+
+            parent::getExceptionAsJSON($e);
+        }
+    }
+
     public static function delete()
     {
         //parent::isAuthenticated();
@@ -45,6 +61,7 @@ class ContaController extends Controller
 
     public static function enviarPix()
     {
+
     }
     
     public static function receberPix()

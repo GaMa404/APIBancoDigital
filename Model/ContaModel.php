@@ -20,6 +20,13 @@ class ContaModel extends Model
         }
     }
 
+    public function getAllRows(string $query = null)
+    {
+        $dao = new ContaDAO();
+
+        $this->rows = ($query == null) ? $dao->select() : $dao->search($query);
+    }
+
     public function delete(int $id)
     {
         (new ContaDAO())->delete($id);
