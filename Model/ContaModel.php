@@ -14,10 +14,6 @@ class ContaModel extends Model
         {
             (new ContaDAO())->insert($this);
         }
-        else
-        {
-            (new ContaDAO())->update($this);
-        }
     }
 
     public function getAllRows(string $query = null)
@@ -27,8 +23,8 @@ class ContaModel extends Model
         $this->rows = ($query == null) ? $dao->select() : $dao->search($query);
     }
 
-    public function delete(int $id)
+    public function delete()
     {
-        (new ContaDAO())->delete($id);
+        (new ContaDAO())->delete($this->id);
     }
 }

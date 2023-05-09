@@ -6,18 +6,24 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch($uri)
 {
+    // OK
     case '/correntista':
-        CorrentistaController::listar();
+        CorrentistaController::select();
     break;
 
     case '/correntista/save':
-        CorrentistaController::salvar();
+        CorrentistaController::save();
     break;
+
+    case '/correntista/deletar':
+        CorrentistaController::delete();
+    break;
+
 
     case '/correntista/entrar':
         CorrentistaController::auth();
     break;
-
+    
     /*case '/conta/pix/enviar':
         //ContaController::enviarPix();
     break;

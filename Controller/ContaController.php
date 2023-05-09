@@ -28,7 +28,7 @@ class ContaController extends Controller
         }   
     }
 
-    public static function getAllRows() : void
+    public static function select() : void
     {
         try
         {
@@ -46,17 +46,23 @@ class ContaController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        try
+		{
+			$model = new ContaModel();
 
-        $model = new ContaModel();
+			$model->id = parent::getIntFromUrl(isset($_GET['id']) ? $_GET['id'] : null);
 
-        $model->delete( (int) $_GET['id'] );
-
-        header("Location: /funcionario");
+			$model->delete();
+		}
+		catch(Exception $e)
+		{
+			parent::getExceptionAsJSON($e);
+		}
     }
 
     public static function extrato()
     {
+        
     }
 
     public static function enviarPix()

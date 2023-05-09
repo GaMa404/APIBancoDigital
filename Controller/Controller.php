@@ -6,13 +6,11 @@ use Exception;
 
 abstract class Controller
 {
-    // MÉTODO PARA VERIFICAR LOGIN
-    /*public static function isAuthenticated(bool $deslogar)
+    protected static function LogError(Exception $e)
     {
-        if(!isset($_SESSION['usuario_logado']))
-        {
-        }
-    }*/
+        $f = fopen("erros.txt", "w");
+        fwrite($f, $e->getTraceAsString());
+    }
 
     public static function getResponseAsJSON($data)
     {

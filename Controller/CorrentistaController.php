@@ -29,7 +29,7 @@ class CorrentistaController extends Controller
         }
     }
 
-    public static function getAllRows() : void
+    public static function select() : void
     {
         try
         {
@@ -45,18 +45,35 @@ class CorrentistaController extends Controller
         }
     }
 
+    public static function delete() : void 
+	{
+		try
+		{
+			$model = new CorrentistaModel();
+
+			$model->id = parent::getIntFromUrl(isset($_GET['id']) ? $_GET['id'] : null);
+
+			$model->delete();
+		}
+		catch(Exception $e)
+		{
+			parent::getExceptionAsJSON($e);
+		}
+	}
+
     public static function auth()
     {
-        $model = new CorrentistaModel();
-
-        $model->cpf = $_POST['cpf'];
-        $model->senha = $_POST['senha'];
-
-        $usuario_logado = $model->autenticar();
-
-        if($usuario_logado !== null)
+        try 
         {
-            $_SESSION['usuario_logado'] = $usuario_logado;
+            $json_obj = json_decode(file_get_contents('php://input'));
+
+            $model = new CorrentistaModel();
+            $model->cpf = $json_obj->Cpf;
+            $model->senha = $json_obj->Senha;
+
+            parent::getResponseAsJSON($model->autenticarLoginCorrentista());
+        } catch (Exception $err) {
+            parent::getExceptionAsJSON($err);
         }
     }
 }

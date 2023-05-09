@@ -13,7 +13,7 @@ class CorrentistaDAO extends DAO
 
     public function insert(CorrentistaModel $m) : bool
     {
-        $sql = "INSERT INTO correntista (nome, data_nasc, cpf, senha) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO correntista (nome, data_nasc, cpf, senha) VALUES (?, ?, ?, sha1(?))";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $m->nome);
@@ -34,31 +34,6 @@ class CorrentistaDAO extends DAO
         return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\CorrentistaModel");
     }
 
-    public function update(CorrentistaModel $m) : bool
-    {
-        $sql = "UPDATE correntista SET nome=?, data_nasc=?, cpf=?, senha=? WHERE id=?";
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $m->nome);
-        $stmt->bindValue(2, $m->data_nasc);
-        $stmt->bindValue(3, $m->cpf);
-        $stmt->bindValue(4, $m->senha);
-
-        return $stmt->execute();
-    }
-
-    public function search(string $query) : array
-    {
-        $str_query = ['filtro' => '%' . $query . '%'];
-
-        $sql = "SELECT * FROM correntista WHERE nome LIKE :filtro ";
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute($str_query);
-
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\CorrentistaModel");
-    }
-
     public function delete(int $id) : bool
     {
         $sql = "DELETE FROM correntista WHERE id=?";
@@ -68,13 +43,13 @@ class CorrentistaDAO extends DAO
         return $stmt->execute();
     }
 
-    public function selectByCpfSenha($cpf, $senha)
+    public function selectByCpfSenha(CorrentistaModel $model)
     {
         $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = ?";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $cpf);
-        $stmt->bindValue(2, $senha);
+        $stmt->bindValue(1, $model->cpf);
+        $stmt->bindValue(2, $model->senha);
         $stmt->execute();
 
         return $stmt->fetchObject("API\Model\CorrentistaModel");

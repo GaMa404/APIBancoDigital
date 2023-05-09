@@ -52,3 +52,4 @@ CREATE TABLE conta_transacao_assoc
     FOREIGN KEY (id_transacao) REFERENCES transacao (id)
 );
 
+INSERT INTO correntista (nome, data_nasc, cpf, senha) VALUES ("hugo", "2005-10-21", "12345678910", sha1("123"));
