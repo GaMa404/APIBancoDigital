@@ -13,13 +13,15 @@ class CorrentistaDAO extends DAO
 
     public function insert(CorrentistaModel $m) : bool
     {
-        $sql = "INSERT INTO correntista (nome, data_nasc, cpf, senha) VALUES (?, ?, ?, sha1(?))";
+        $sql = "INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES (?, ?, ?, ?, sha1(?), ?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $m->nome);
-        $stmt->bindValue(2, $m->data_nasc);
-        $stmt->bindValue(3, $m->cpf);
-        $stmt->bindValue(4, $m->senha);
+        $stmt->bindValue(2, $m->email);
+        $stmt->bindValue(3, $m->data_nasc);
+        $stmt->bindValue(4, $m->cpf);
+        $stmt->bindValue(5, $m->senha);
+        $stmt->bindValue(6, $m->data_cadastro);
 
         return $stmt->execute();
     }

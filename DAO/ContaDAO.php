@@ -13,13 +13,16 @@ class ContaDAO extends DAO
 
     public function insert(ContaModel $m) : bool
     {
-        $sql = "INSERT INTO conta (numero, tipo, senha, id_correntista) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO conta (numero, saldo, limite, tipo, senha, data_abertura, id_correntista) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $m->numero);
-        $stmt->bindValue(2, $m->tipo);
-        $stmt->bindValue(3, $m->senha);
-        $stmt->bindValue(4, $m->id_correntista);
+        $stmt->bindValue(2, $m->saldo);
+        $stmt->bindValue(3, $m->limite);
+        $stmt->bindValue(4, $m->tipo);
+        $stmt->bindValue(5, $m->senha);
+        $stmt->bindValue(6, $m->data_abertura);
+        $stmt->bindValue(7, $m->id_correntista);
 
         return $stmt->execute();
     }
@@ -36,13 +39,17 @@ class ContaDAO extends DAO
 
     public function update(ContaModel $m) : bool
     {
-        $sql = "UPDATE conta SET numero=?, tipo=?, senha=?, id_correntista=? WHERE id=?";
+        $sql = "UPDATE conta SET numero=?, saldo=?, limite=?, tipo=?, senha=?, data_abertura=?, id_correntista=? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $m->numero);
-        $stmt->bindValue(2, $m->tipo);
-        $stmt->bindValue(3, $m->senha);
-        $stmt->bindValue(4, $m->id_correntista);
+        $stmt->bindValue(2, $m->saldo);
+        $stmt->bindValue(3, $m->limite);
+        $stmt->bindValue(4, $m->tipo);
+        $stmt->bindValue(5, $m->senha);
+        $stmt->bindValue(6, $m->data_abertura);
+        $stmt->bindValue(7, $m->id_correntista);
+        $stmt->bindValue(8, $m->id);
 
         return $stmt->execute();
     }
