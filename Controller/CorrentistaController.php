@@ -21,7 +21,7 @@ class CorrentistaController extends Controller
             $model->data_nasc = $json_obj->Data_nasc;
             $model->cpf = $json_obj->Cpf;
             $model->senha = $json_obj->Senha;
-            $model->data_cadastro->Data_cadastro;
+            $model->data_cadastro = $json_obj->Data_cadastro;
 
             $model->save();
         }

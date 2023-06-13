@@ -10,7 +10,7 @@ CREATE TABLE correntista
     data_nasc DATE,
     cpf CHAR(11),
     senha VARCHAR(100),
-    data_cadastro TIMESTAMP,
+    data_cadastro DATE,
     PRIMARY KEY (id)
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE conta
     limite DOUBLE,
     tipo ENUM("Corrente", "Poupança"),
     senha VARCHAR(100),
-    data_abertura TIMESTAMP,
+    data_abertura DATE,
     id_correntista INT,
     PRIMARY KEY (id),
     FOREIGN KEY (id_correntista) REFERENCES correntista(id)
@@ -60,6 +60,6 @@ CREATE TABLE conta_transacao_assoc
     FOREIGN KEY (id_transacao) REFERENCES transacao (id)
 );
 
-INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("hugo", "hugo@gmail.com", "2005-10-21", "12345678910", sha1("123"), NOW());
+INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("hugo", "hugo@gmail.com", "2005-09-20", "12345678910", sha1("123"), "2023-11-22");
 
-INSERT INTO conta (numero, saldo, limite, tipo, senha, data_abertura, id_correntista) VALUES ("987654321", "1250.98", "5000", "Corrente", "7355608", NOW(), 1);
+INSERT INTO conta (numero, saldo, limite, tipo, senha, data_abertura, id_correntista) VALUES ("987654321", "1250.98", "5000", "Corrente", "7355608", "2023-05-15", 1);

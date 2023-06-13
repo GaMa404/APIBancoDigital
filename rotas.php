@@ -11,7 +11,7 @@ switch($uri)
         CorrentistaController::select();
     break;
 
-    case '/correntista/save':
+    case '/correntista/salvar':
         CorrentistaController::save();
     break;
 
