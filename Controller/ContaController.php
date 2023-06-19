@@ -1,8 +1,8 @@
 <?php
 
-namespace Api\Controller;
+namespace APIBancoDigital\Controller;
 
-use Api\Model\ContaModel;
+use APIBancoDigital\Model\ContaModel;
 use Exception;
 
 class ContaController extends Controller

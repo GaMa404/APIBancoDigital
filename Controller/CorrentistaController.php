@@ -1,8 +1,8 @@
 <?php
 
-namespace API\Controller;
+namespace APIBancoDigital\Controller;
 
-use API\Model\CorrentistaModel;
+use APIBancoDigital\Model\CorrentistaModel;
 use Exception;
 
 class CorrentistaController extends Controller 

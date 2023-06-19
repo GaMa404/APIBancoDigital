@@ -1,6 +1,6 @@
 <?php
 
-use API\Controller\CorrentistaController;
+use APIBancoDigital\Controller\CorrentistaController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

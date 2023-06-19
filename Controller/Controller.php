@@ -1,6 +1,6 @@
 <?php
 
-namespace API\Controller;
+namespace APIBancoDigital\Controller;
 
 use Exception;
 

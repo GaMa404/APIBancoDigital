@@ -1,6 +1,6 @@
 <?php
 
-namespace API\Model;
+namespace APIBancoDigital\Model;
 
 abstract class Model 
 {

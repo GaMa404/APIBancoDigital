@@ -1,8 +1,8 @@
 <?php
 
-namespace API\Model;
+namespace APIBancoDigital\Model;
 
-use API\DAO\ContaDAO;
+use APIBancoDigital\DAO\ContaDAO;
 
 class ContaModel extends Model
 {
