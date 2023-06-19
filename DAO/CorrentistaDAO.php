@@ -23,7 +23,8 @@ class CorrentistaDAO extends DAO
         $stmt->bindValue(5, $m->senha);
         $stmt->bindValue(6, $m->data_cadastro);
 
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->conexao->lastInsertId();
     }
 
     public function select() : array
@@ -33,7 +34,7 @@ class CorrentistaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\CorrentistaModel");
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "APIBancoDigital\Model\CorrentistaModel");
     }
 
     public function delete(int $id) : bool
@@ -54,6 +55,6 @@ class CorrentistaDAO extends DAO
         $stmt->bindValue(2, $model->senha);
         $stmt->execute();
 
-        return $stmt->fetchObject("API\Model\CorrentistaModel");
+        return $stmt->fetchObject("APIBancoDigital\Model\CorrentistaModel");
     }
 }

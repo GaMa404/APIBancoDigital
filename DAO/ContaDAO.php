@@ -34,7 +34,7 @@ class ContaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\ContaModel");
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "APIBancoDigital\Model\ContaModel");
     }
 
     public function update(ContaModel $m) : bool
@@ -72,7 +72,7 @@ class ContaDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute($str_query);
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "API\Model\ContaModel");
+        return $stmt->fetchAll(DAO::FETCH_CLASS, "APIBancoDigital\Model\ContaModel");
     }
     
     public function selectByNumero($numero)
@@ -83,6 +83,6 @@ class ContaDAO extends DAO
         $stmt->bindValue(1, $numero);
         $stmt->execute();
 
-        return $stmt->fetchObject("API\Model\ContaModel");
+        return $stmt->fetchObject("APIBancoDigital\Model\ContaModel");
     }
 }
