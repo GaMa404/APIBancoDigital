@@ -26,6 +26,15 @@ class CorrentistaModel extends Model
         (new CorrentistaDAO())->delete($this->id);
     }
 
+    public function getById(int $id)
+   {
+        $dao = new CorrentistaDAO();
+
+        $obj = $dao->selectById($id);
+
+        return ($obj) ? $obj : new CorrentistaModel();
+   }
+
     public function autenticarLoginCorrentista()
     {
         $dao = new CorrentistaDAO();

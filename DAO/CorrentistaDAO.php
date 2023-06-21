@@ -46,6 +46,20 @@ class CorrentistaDAO extends DAO
         return $stmt->execute();
     }
 
+    public function selectById(int $id)
+    {
+        include_once 'Model/CorrentistaModel.php';
+
+        $sql = 'SELECT * FROM correntista WHERE id=?';
+
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+
+        return $stmt->fetchObject("APIBancoDigital\Model\CorrentistaModel");
+    }
+
     public function selectByCpfSenha(CorrentistaModel $model)
     {
         $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = ?";
