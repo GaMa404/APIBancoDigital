@@ -6,14 +6,20 @@ use APIBancoDigital\DAO\ContaDAO;
 
 class ContaModel extends Model
 {
-    public $id, $numero, $saldo, $limite, $tipo, $senha, $data_abertura, $id_correntista;
+    public $id, $numero, $saldo, $limite, $tipo, $data_abertura, $id_correntista;
 
     public function save()
     {
-        if($this->id == null)
+        $dao = new ContaDAO();
+
+        if(empty($this->id))
         {
-            (new ContaDAO())->insert($this);
-        }
+            $dao->insert($this);
+        } 
+        else 
+        {
+            //$dao->update($this);
+        }        
     }
 
     public function getAllRows(string $query = null)

@@ -10,21 +10,29 @@ class CorrentistaDAO extends DAO
     {
         parent::__construct();
     }
+    
+    public function save(CorrentistaModel $m) : ?CorrentistaModel
+    {
+        return ($m->id == null) ? $this->insert($m) : $this->update($m);
+    }
 
-    public function insert(CorrentistaModel $m) : bool
+    public function insert(CorrentistaModel $model)
     {
         $sql = "INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES (?, ?, ?, ?, sha1(?), ?)";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $m->nome);
-        $stmt->bindValue(2, $m->email);
-        $stmt->bindValue(3, $m->data_nasc);
-        $stmt->bindValue(4, $m->cpf);
-        $stmt->bindValue(5, $m->senha);
-        $stmt->bindValue(6, $m->data_cadastro);
+        $stmt->bindValue(1, $model->nome);
+        $stmt->bindValue(2, $model->email);
+        $stmt->bindValue(3, $model->data_nasc);
+        $stmt->bindValue(4, $model->cpf);
+        $stmt->bindValue(5, $model->senha);
+        $stmt->bindValue(6, $model->data_cadastro);
 
         $stmt->execute();
-        return $this->conexao->lastInsertId();
+
+        $model->id = $this->conexao->lastInsertId();
+
+        return $model;
     }
 
     public function select() : array
@@ -36,6 +44,10 @@ class CorrentistaDAO extends DAO
 
         return $stmt->fetchAll(DAO::FETCH_CLASS, "APIBancoDigital\Model\CorrentistaModel");
     }
+
+    private function update(CorrentistaModel $m) 
+   {
+   }
 
     public function delete(int $id) : bool
     {

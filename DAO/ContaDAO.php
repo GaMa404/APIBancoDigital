@@ -11,20 +11,23 @@ class ContaDAO extends DAO
         parent::__construct();
     }
 
-    public function insert(ContaModel $m) : bool
+    public function insert(ContaModel $model) : ?ContaModel
     {
-        $sql = "INSERT INTO conta (numero, saldo, limite, tipo, senha, data_abertura, id_correntista) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO conta (numero, saldo, limite, tipo, id_correntista) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $m->numero);
-        $stmt->bindValue(2, $m->saldo);
-        $stmt->bindValue(3, $m->limite);
-        $stmt->bindValue(4, $m->tipo);
-        $stmt->bindValue(5, $m->senha);
-        $stmt->bindValue(6, $m->data_abertura);
-        $stmt->bindValue(7, $m->id_correntista);
 
-        return $stmt->execute();
+        $stmt->bindValue(1, $model->numero);
+        $stmt->bindValue(2, $model->saldo);
+        $stmt->bindValue(3, $model->limite);
+        $stmt->bindValue(4, $model->tipo);
+        $stmt->bindValue(5, $model->id_correntista);
+
+        $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+
+        return $model;
     }
 
     public function select() : array
@@ -39,17 +42,15 @@ class ContaDAO extends DAO
 
     public function update(ContaModel $m) : bool
     {
-        $sql = "UPDATE conta SET numero=?, saldo=?, limite=?, tipo=?, senha=?, data_abertura=?, id_correntista=? WHERE id=?";
+        $sql = "UPDATE conta SET numero=?, saldo=?, limite=?, tipo=?, data_abertura=?, id_correntista=? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $m->numero);
         $stmt->bindValue(2, $m->saldo);
         $stmt->bindValue(3, $m->limite);
         $stmt->bindValue(4, $m->tipo);
-        $stmt->bindValue(5, $m->senha);
-        $stmt->bindValue(6, $m->data_abertura);
-        $stmt->bindValue(7, $m->id_correntista);
-        $stmt->bindValue(8, $m->id);
+        $stmt->bindValue(5, $m->id_correntista);
+        $stmt->bindValue(6, $m->id);
 
         return $stmt->execute();
     }
