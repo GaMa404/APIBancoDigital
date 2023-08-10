@@ -13,15 +13,13 @@ class ContaDAO extends DAO
 
     public function insert(ContaModel $model) : ?ContaModel
     {
-        $sql = "INSERT INTO conta (numero, saldo, limite, tipo, id_correntista) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO conta (saldo, limite, tipo, id_correntista) VALUES (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
-
-        $stmt->bindValue(1, $model->numero);
-        $stmt->bindValue(2, $model->saldo);
-        $stmt->bindValue(3, $model->limite);
-        $stmt->bindValue(4, $model->tipo);
-        $stmt->bindValue(5, $model->id_correntista);
+        $stmt->bindValue(1, $model->saldo);
+        $stmt->bindValue(2, $model->limite);
+        $stmt->bindValue(3, $model->tipo);
+        $stmt->bindValue(4, $model->id_correntista);
 
         $stmt->execute();
 
@@ -42,15 +40,14 @@ class ContaDAO extends DAO
 
     public function update(ContaModel $m) : bool
     {
-        $sql = "UPDATE conta SET numero=?, saldo=?, limite=?, tipo=?, data_abertura=?, id_correntista=? WHERE id=?";
+        $sql = "UPDATE conta SET saldo=?, limite=?, tipo=?, data_abertura=?, id_correntista=? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $m->numero);
-        $stmt->bindValue(2, $m->saldo);
-        $stmt->bindValue(3, $m->limite);
-        $stmt->bindValue(4, $m->tipo);
-        $stmt->bindValue(5, $m->id_correntista);
-        $stmt->bindValue(6, $m->id);
+        $stmt->bindValue(1, $m->saldo);
+        $stmt->bindValue(2, $m->limite);
+        $stmt->bindValue(3, $m->tipo);
+        $stmt->bindValue(4, $m->id_correntista);
+        $stmt->bindValue(5, $m->id);
 
         return $stmt->execute();
     }
@@ -64,7 +61,7 @@ class ContaDAO extends DAO
         return $stmt->execute();
     }
     
-    public function search(string $query) : array
+    /*public function search(string $query) : array
     {
         $str_query = ['filtro' => '%' . $query . '%'];
 
@@ -85,5 +82,5 @@ class ContaDAO extends DAO
         $stmt->execute();
 
         return $stmt->fetchObject("APIBancoDigital\Model\ContaModel");
-    }
+    }*/
 }

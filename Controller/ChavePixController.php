@@ -31,7 +31,7 @@ class ChavePixController extends Controller
         }
     }
 
-    public function listar() : void
+    public static function listar() : void
     {
         try
         {
@@ -48,7 +48,7 @@ class ChavePixController extends Controller
         }
     }
 
-    public function remover()
+    public static function remover()
     {
         try
         {
@@ -56,12 +56,12 @@ class ChavePixController extends Controller
 
             $model = new ChavePixModel();
 
-            foreach(get_object_vars($data) as $key => $value)
+            /*foreach(get_object_vars($data) as $key => $value)
             {
                 $prop_letra_minuscula = $strtolower($key);
 
                 $model->$prop_letra_minuscula = $value;
-            }
+            }*/
 
             parent::getResponseAsJSON($model->save());
         }

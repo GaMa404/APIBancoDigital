@@ -7,7 +7,7 @@ use Exception;
 
 class ContaController extends Controller
 {
-    public static function save() : void
+    /*public static function save() : void
     {
         try
         {
@@ -61,19 +61,5 @@ class ContaController extends Controller
 		{
 			parent::getExceptionAsJSON($e);
 		}
-    }
-
-    public static function extrato()
-    {
-        
-    }
-
-    public static function enviarPix()
-    {
-    
-    }
-    
-    public static function receberPix()
-    {
-    }
+    }*/
 }
