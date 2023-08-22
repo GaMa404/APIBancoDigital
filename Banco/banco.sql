@@ -10,7 +10,7 @@ CREATE TABLE correntista
     data_nasc DATE,
     cpf CHAR(11),
     senha VARCHAR(100),
-    data_cadastro DATE,
+    data_cadastro TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -58,3 +58,5 @@ CREATE TABLE conta_transacao_assoc
     FOREIGN KEY (id_conta) REFERENCES conta (id),
     FOREIGN KEY (id_transacao) REFERENCES transacao (id)
 );
+
+INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("benicio", "benicio@gmail.com", "2005-02-09", "54424309860", sha1("123"), NOW());

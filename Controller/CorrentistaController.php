@@ -24,6 +24,8 @@ class CorrentistaController extends Controller
             $model->data_cadastro = $json_obj->Data_cadastro;
 
             $model->save();
+
+            parent::getResponseAsJSON($model);
         }
         catch(Exception $e)
         {
