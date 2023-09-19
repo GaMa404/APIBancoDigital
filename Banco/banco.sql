@@ -20,7 +20,6 @@ CREATE TABLE conta
     saldo DOUBLE, 
     limite DOUBLE,
     tipo ENUM("C", "P"),
-    data_abertura TIMESTAMP,
     id_correntista INT,
     PRIMARY KEY (id),
     FOREIGN KEY (id_correntista) REFERENCES correntista(id)
