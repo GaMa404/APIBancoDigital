@@ -8,6 +8,13 @@ class ContaModel extends Model
 {
     public $id, $saldo, $limite, $tipo, $data_abertura, $id_correntista;
 
+    public function ContaByCorrentista()
+    {
+        $dao = new ContaDAO();
+
+        return $dao->selectByCorrentista($this);
+    }
+
     public function save()
     {
         $dao = new ContaDAO();

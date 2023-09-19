@@ -1,6 +1,7 @@
 <?php
 
 use APIBancoDigital\Controller\ChavePixController;
+use APIBancoDigital\Controller\ContaController;
 use APIBancoDigital\Controller\CorrentistaController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -25,6 +26,10 @@ switch($uri)
         CorrentistaController::auth();
     break;
     
+    case '/conta/dados':
+        ContaController::ContaByCorrentista();
+    break;
+
     case '/pix/chave/listar':
         ChavePixController::listar();
     break;

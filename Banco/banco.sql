@@ -17,7 +17,6 @@ CREATE TABLE correntista
 CREATE TABLE conta
 (
 	id INT AUTO_INCREMENT,
-    numero VARCHAR(150),
     saldo DOUBLE, 
     limite DOUBLE,
     tipo ENUM("C", "P"),
@@ -59,4 +58,4 @@ CREATE TABLE conta_transacao_assoc
     FOREIGN KEY (id_transacao) REFERENCES transacao (id)
 );
 
-INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("benicio", "benicio@gmail.com", "2005-02-09", "54424309860", sha1("123"), NOW());
+##INSERT INTO correntista (nome, email, data_nasc, cpf, senha, data_cadastro) VALUES ("benicio", "benicio@gmail.com", "2005-02-09", "54424309860", sha1("123"), NOW());

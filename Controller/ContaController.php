@@ -7,6 +7,22 @@ use Exception;
 
 class ContaController extends Controller
 {
+    public static function ContaByCorrentista() : void
+    {
+        try 
+        {
+            $json_obj = json_decode(file_get_contents('php://input'));
+
+            $model = new ContaModel();
+            $model->id_correntista = $json_obj->Id_correntista;
+
+            parent::getResponseAsJSON($model->ContaByCorrentista());
+        } 
+        catch (Exception $err) 
+        {
+            parent::getExceptionAsJSON($err);
+        }
+    }
     /*public static function save() : void
     {
         try

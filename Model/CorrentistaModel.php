@@ -25,7 +25,7 @@ class CorrentistaModel extends Model
             $conta_corrente->saldo = 0;
             $conta_corrente->limite = 100;
             $conta_corrente->tipo = 'C';
-            //$conta_corrente->data_abertura
+            //$conta_corrente->data_abertura = time();
             $conta_corrente->id_correntista = $model_preenchido->id;
             $conta_corrente = $dao_conta->insert($conta_corrente);
 

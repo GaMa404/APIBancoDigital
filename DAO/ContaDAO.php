@@ -28,15 +28,15 @@ class ContaDAO extends DAO
         return $model;
     }
 
-    public function selectByCorrentista(ContaModel $model) : array
+    public function selectByCorrentista(ContaModel $model)
     {
-        $sql = "SELECT * FROM conta WHERE id_correntista = ?";
+        $sql = "SELECT * FROM conta WHERE tipo='C' AND id_correntista=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->id_correntista);
         $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, "APIBancoDigital\Model\ContaModel");
+        return $stmt->fetchObject("APIBancoDigital\Model\ContaModel");
     }
 
     public function update(ContaModel $model) : bool
