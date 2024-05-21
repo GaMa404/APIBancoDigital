@@ -15,6 +15,8 @@ abstract class Controller
     public static function getResponseAsJSON($data)
     {
         header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
         header("Content-type: application/json; charset-utf-8");
         header("Cache-Control: no-cache, must-revalidate");
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -27,7 +29,9 @@ abstract class Controller
     {
         $response = array('response_data' => $data, 'response_successful' => $request_status);
 
-        header("Acces-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
         header("Content-type: application/json; charset-utf-8");
         header("Cache-Control: no-cache, must-revalidate");
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
@@ -48,7 +52,9 @@ abstract class Controller
             'previous' => $e->getPrevious()
         ];
 
-        header("Acces-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
         header("Content-type: application/json; charset-utf-8");
         header("Cache-Control: no-cache, must-revalidate");
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");

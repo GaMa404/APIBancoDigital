@@ -15,13 +15,13 @@ class CorrentistaController extends Controller
 
             $model = new CorrentistaModel();
 
-            $model->id = $json_obj->Id;
-            $model->nome = $json_obj->Nome;
-            $model->email = $json_obj->Email;
-            $model->data_nasc = $json_obj->Data_nasc;
-            $model->cpf = $json_obj->Cpf;
-            $model->senha = $json_obj->Senha;
-            $model->data_cadastro = $json_obj->Data_cadastro;
+            $model->id = $json_obj->id;
+            $model->nome = $json_obj->nome;
+            $model->email = $json_obj->email;
+            $model->data_nasc = $json_obj->data_nasc;
+            $model->cpf = $json_obj->cpf;
+            $model->senha = $json_obj->senha;
+            $model->data_cadastro = $json_obj->data_cadastro;
 
             $model->save();
 
