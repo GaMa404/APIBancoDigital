@@ -14,34 +14,24 @@ abstract class Controller
 
     public static function getResponseAsJSON($data)
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Content-type: application/json; charset-utf-8");
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-        header("Pragma: public");
+        self::setHeaders();
 
         exit(json_encode($data));
     }
 
     public static function setResponseAsJSON($data, $request_status = true)
     {
-        $response = array('response_data' => $data, 'response_successful' => $request_status);
+        self::setHeaders();
 
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Content-type: application/json; charset-utf-8");
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-        header("Pragma: public");
+        $response = array('response_data' => $data, 'response_successful' => $request_status);
 
         exit(json_encode($data));
     }
 
     public static function getExceptionAsJSON(Exception $e)
     {
+        self::setHeaders();
+
         $exception = 
         [
             'message' => $e->getMessage(),
@@ -51,14 +41,6 @@ abstract class Controller
             'traceAsString' => $e->getTraceAsString(),
             'previous' => $e->getPrevious()
         ];
-
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: POST, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Content-type: application/json; charset-utf-8");
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-        header("Pragma: public");
 
         http_response_code(400);
 
@@ -107,5 +89,16 @@ abstract class Controller
         {
             throw new Exception ("Variável $var_name não identificada.");
         }
+    }
+
+    public static function setHeaders()
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE");
+        header("Access-Control-Allow-Headers: Content-Type");
+        header("Content-type: application/json; charset-utf-8");
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Expires: 0");
+        header("Pragma: no-cache");
     }
 }

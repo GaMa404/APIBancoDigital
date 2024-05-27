@@ -3,8 +3,16 @@
 use APIBancoDigital\Controller\ChavePixController;
 use APIBancoDigital\Controller\ContaController;
 use APIBancoDigital\Controller\CorrentistaController;
+use APIBancoDigital\Controller\Controller;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS')
+{
+    Controller::setHeaders();
+    http_response_code(204);
+    exit();
+}
 
 switch($uri)
 {

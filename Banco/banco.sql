@@ -5,12 +5,12 @@ USE db_banco_digital;
 CREATE TABLE correntista
 (
 	id INT AUTO_INCREMENT,
-    nome VARCHAR(150),
-    email VARCHAR(100),
-    data_nasc DATE,
-    cpf CHAR(11),
-    senha VARCHAR(100),
-    data_cadastro TIMESTAMP,
+    nome VARCHAR(150) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    data_nasc DATE NOT NULL,
+    cpf CHAR(11) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    data_cadastro TIMESTAMP NOT NULL,
     PRIMARY KEY (id)
 );
 
