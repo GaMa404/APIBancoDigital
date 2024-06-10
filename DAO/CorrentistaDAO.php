@@ -74,7 +74,7 @@ class CorrentistaDAO extends DAO
 
     public function selectByCpfSenha(CorrentistaModel $model)
     {
-        $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = ?";
+        $sql = "SELECT * FROM correntista WHERE cpf = ? AND senha = sha1(?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->cpf);
