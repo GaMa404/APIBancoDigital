@@ -29,10 +29,15 @@ switch($uri)
         CorrentistaController::delete();
     break;
 
-
     case '/correntista/entrar':
         CorrentistaController::auth();
     break;
+
+    case '/correntista/by_id':
+        CorrentistaController::selectById();
+    break;
+
+    // ========================================
     
     case '/conta/dados':
         ContaController::ContaByCorrentista();

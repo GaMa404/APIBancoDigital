@@ -49,7 +49,23 @@ class CorrentistaController extends Controller
         }
     }
 
-    public static function delete() : void 
+    public static function selectById() : void 
+    {
+        try
+        {
+            $json_obj = json_decode(file_get_contents('php://input'));
+
+            $model = new CorrentistaModel();
+            $model->id = $json_obj->id;
+            parent::getResponseAsJSON($model->getById($model->id));
+        }
+        catch(Exception $e)
+        {
+            parent::getExceptionAsJson($e);
+        }
+    }
+
+    /*public static function delete() : void 
 	{
 		try
 		{
@@ -63,7 +79,7 @@ class CorrentistaController extends Controller
 		{
 			parent::getExceptionAsJSON($e);
 		}
-	}
+	}*/
 
     public static function auth()
     {
